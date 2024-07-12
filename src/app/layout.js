@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/Components/Navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,9 +10,30 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const colorScheme = {
+    primary: "#a67c52", //yellow ochre
+    background: "#fff", //white
+    secondary: "#998675;", //light-brown
+    ternary: "#171411", //black_dull
+    primary_text: "#fff", // white text
+    secondary_text: "#2C2C2C", //light black text
+  };
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={inter.className}
+        style={{
+          " --color-background": colorScheme.background,
+          "--color-primary": colorScheme.primary,
+          "--color-secondary": colorScheme.secondary,
+          "--color-ternary": colorScheme.ternary,
+          "--color-text-primary": colorScheme.primary_text,
+          "--color-text-secondary": colorScheme.secondary_text,
+        }}
+      >
+        <Navbar/>
+        {children}
+      </body>
     </html>
   );
 }
